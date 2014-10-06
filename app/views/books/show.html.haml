@@ -1,2 +1,7 @@
-%h1 Books#show
-%p Find me in app/views/books/show.html.haml
+%h1=@book.title
+
+%h3 Chapters
+-@chapters.order("chapter_order asc").each do |chapter|
+  %ul
+    %li
+      =link_to chapter.name, book_chapter_path(@book.id, chapter)

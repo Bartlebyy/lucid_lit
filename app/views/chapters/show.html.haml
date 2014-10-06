@@ -1,2 +1,16 @@
-%h1 Chapters#show
-%p Find me in app/views/chapters/show.html.haml
+.col-sm-2
+.col-sm-8
+  %h1=@chapter.name
+  %p{:style => "white-space: pre-wrap"}
+    =@chapter.body
+  -# Current Order:
+  -# =@chapter.chapter_order
+  -# %br
+  -# Next Order:
+  -# =@chapter.chapter_order+1
+  -# %br
+  .pull-right
+    -if @next_chapter
+      =link_to "Next Chapter", book_chapter_path(@book, @next_chapter), {:style=>'color:#000000;'}
+    -else
+      =link_to "Complete", book_path(@book)

@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-
+  devise_for :users
   get 'static_pages/home'
 
   get 'static_pages/help'
 
-  get 'chapters/show'
+  resources :books do
+    resources :chapters, except: [:index]
+  end
 
-  get 'books/index'
-
-  get 'books/show'
 
   root 'static_pages#home'
 

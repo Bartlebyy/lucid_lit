@@ -1,2 +1,6 @@
-%h1 Books#index
-%p Find me in app/views/books/index.html.haml
+%h1 Books
+
+-@books.each do |book|
+  %ul
+    %li
+      =link_to book.title, book
