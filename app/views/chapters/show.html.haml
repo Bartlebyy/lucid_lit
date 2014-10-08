@@ -1,16 +1,32 @@
 .col-sm-2
 .col-sm-8
   %h1=@chapter.name
-  %p{:style => "white-space: pre-wrap"}
+  %p#sandbox{:style => "white-space: pre-wrap"}
     =@chapter.body
-  -# Current Order:
-  -# =@chapter.chapter_order
-  -# %br
-  -# Next Order:
-  -# =@chapter.chapter_order+1
-  -# %br
   .pull-right
     -if @next_chapter
       =link_to "Next Chapter", book_chapter_path(@book, @next_chapter), {:style=>'color:#000000;'}
     -else
-      =link_to "Complete", book_path(@book)
+      =link_to "Complete!", book_path(@book), {:style=>'color:#000000;'}
+
+
+:javascript
+  $(document).ready(function(){
+    var highlighter;
+    $('#sandbox').textHighlighter({
+        onRemoveHighlight: function(highlight) {
+            return true //confirm('Do you really want to remove this highlight: "' + $(highlight).text() + '"?');
+        },
+        onBeforeHighlight: function(range) {
+          //TODO Insert Popover asking whether to annotate
+            return true
+        },
+        onAfterHighlight: function(highlights, range) {
+            var jsonStr = highlighter.serializeHighlights();
+            console.log(jsonStr);
+
+            highlighter.removeHighlights();
+        }
+    });
+    highlighter = $('#sandbox').getHighlighter();
+  });

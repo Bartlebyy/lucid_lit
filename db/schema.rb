@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006142024) do
+ActiveRecord::Schema.define(version: 20141008171847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "annotations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "chapter_id"
+    t.integer  "offset"
+    t.integer  "length"
+    t.string   "original_word"
+    t.string   "note",          limit: 200
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "books", force: true do |t|
     t.string   "title"
