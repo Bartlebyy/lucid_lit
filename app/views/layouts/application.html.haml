@@ -12,5 +12,11 @@
     .row
       .col-sm-1
       .col-sm-10
+        .flash
+        - flash.each do |name, msg|
+          %div{ :class => "alert alert-#{flash_class name}" }
+            %a.close{ "data-dismiss" => "alert" } &times;
+            %div{ :id => "flash_#{flash_class name}" }
+              = msg
         = yield
       = render partial: 'layouts/footer'

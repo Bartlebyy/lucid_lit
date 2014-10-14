@@ -4,10 +4,15 @@ Rails.application.routes.draw do
 
   get 'static_pages/help'
 
-  resources :books do
-    resources :chapters, except: [:index]
-  end
+  # resources :books do
+  #   resources :chapters, except: [:index]
+  # end
 
+  resources :books, shallow: true do
+    resources :chapters, shallow: true, except: [:index] do
+      resources :annotations, only: [:create]
+    end
+  end
 
   root 'static_pages#home'
 

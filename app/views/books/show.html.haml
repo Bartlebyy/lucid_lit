@@ -4,4 +4,4 @@
 -@chapters.order("chapter_order asc").each do |chapter|
   %ul
     %li
-      =link_to chapter.name, book_chapter_path(@book.id, chapter)
+      =link_to chapter.name, chapter_path(chapter)

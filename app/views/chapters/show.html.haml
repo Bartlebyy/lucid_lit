@@ -5,28 +5,19 @@
     =@chapter.body
   .pull-right
     -if @next_chapter
-      =link_to "Next Chapter", book_chapter_path(@book, @next_chapter), {:style=>'color:#000000;'}
+      =link_to "Next Chapter", chapter_path(@next_chapter), {:style=>'color:#000000;'}
     -else
       =link_to "Complete!", book_path(@book), {:style=>'color:#000000;'}
+  %input#chapter_id{:type => "hidden", :value => @chapter.id}/
 
-
-:javascript
-  $(document).ready(function(){
-    var highlighter;
-    $('#sandbox').textHighlighter({
-        onRemoveHighlight: function(highlight) {
-            return true //confirm('Do you really want to remove this highlight: "' + $(highlight).text() + '"?');
-        },
-        onBeforeHighlight: function(range) {
-          //TODO Insert Popover asking whether to annotate
-            return true
-        },
-        onAfterHighlight: function(highlights, range) {
-            var jsonStr = highlighter.serializeHighlights();
-            console.log(jsonStr);
-
-            highlighter.removeHighlights();
-        }
-    });
-    highlighter = $('#sandbox').getHighlighter();
-  });
+  -# =form_for [@chapter, @annotation] do |f|
+  -#   .form-group
+  -#     =f.label :note, "Note"
+  -#     =f.text_field :note, class: "form-control"
+  -#
+  -#   .form-group
+  -#     =f.text_area :description, class: "form-control"
+  -#     =f.text_area :description, class: "form-control"
+  -#     =f.text_area :description, class: "form-control"
+  -#
+  -#   =f.submit class: "btn btn-primary"
