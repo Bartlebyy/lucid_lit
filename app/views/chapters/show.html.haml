@@ -10,14 +10,17 @@
       =link_to "Complete!", book_path(@book), {:style=>'color:#000000;'}
   %input#chapter_id{:type => "hidden", :value => @chapter.id}/
 
-  -# =form_for [@chapter, @annotation] do |f|
-  -#   .form-group
-  -#     =f.label :note, "Note"
-  -#     =f.text_field :note, class: "form-control"
-  -#
-  -#   .form-group
-  -#     =f.text_area :description, class: "form-control"
-  -#     =f.text_area :description, class: "form-control"
-  -#     =f.text_area :description, class: "form-control"
-  -#
-  -#   =f.submit class: "btn btn-primary"
+.modal.fade.bs-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#mySmallModalLabel.modal-title New Annotation
+      .modal-body
+        =form_for [@chapter, Annotation.new], remote: true do |f|
+          .form-group
+            %span#original_word
+            =f.text_area :note, class: "form-control"
+          =f.submit "Create", class: "btn btn-default btn-block btn-primary"

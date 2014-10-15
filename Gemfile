@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'devise'
 gem 'seed_dump'
+gem 'kitabu'
 
 group :production do
   gem 'rails_12factor'

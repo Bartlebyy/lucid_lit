@@ -22,7 +22,9 @@ $(document).ready(function(){
         console.log(jsonStr);
         console.log(highlights);
         $('.popover').popover('destroy');
-        $(".highlighted").popover({ content: range, placement: 'top' }).popover('show');
+        // $(".highlighted").popover({ content: range, placement: 'top' }).popover('show');
+        $(".modal").modal('show');
+        highlighter.removeHighlights();
       });
 
       //  $(highlights).wrap( "<a data-annon=\"45\" href=\"#\"></a>" );
