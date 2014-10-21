@@ -1,6 +1,20 @@
-%h1 Books
-
--@books.each do |book|
-  %ul
-    %li
-      =link_to book.title, book
+.row-fluid
+  .col-lg-8
+    %h1 Library
+  .col-lg-4
+    %button.pull-right.btn.btn-primary Request Next Book
+.row-fluid.col-md-12
+  -@books.each do |book|
+    -# %ul
+    -#   %li
+    -#     =link_to book.title, book
+    .col-sm-6.col-md-4
+      .thumbnail
+        %a.mini-cover{:href => "books/#{book.id}"}
+          =image_tag(book.image)
+        .caption
+          %h4
+            =link_to book.title, book, {:style=>'color:#000000;'}
+          %p="by #{book.author}"
+          .text-right
+            =link_to "Start", book.first_chapter, class: "btn btn-primary btn-block"

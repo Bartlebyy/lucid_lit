@@ -8,6 +8,9 @@
       =link_to "Next Chapter", chapter_path(@next_chapter), {:style=>'color:#000000;'}
     -else
       =link_to "Complete!", book_path(@book), {:style=>'color:#000000;'}
+  .pull-left
+    -if @previous_chapter
+      =link_to "Previous Chapter", chapter_path(@previous_chapter), {:style=>'color:#000000;'}
   %input#chapter_id{:type => "hidden", :value => @chapter.id}/
 
 .modal.fade.bs-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -21,6 +24,11 @@
       .modal-body
         =form_for [@chapter, Annotation.new], remote: true do |f|
           .form-group
-            %span#original_word
+            %p#original_word
             =f.text_area :note, class: "form-control"
+            =f.hidden_field :offset
+            =f.hidden_field :length
+            =f.hidden_field :original_word
+            =f.hidden_field :user_id, value: current_user.id
+            =f.hidden_field :chapter_id, value: @chapter.id
           =f.submit "Create", class: "btn btn-default btn-block btn-primary"

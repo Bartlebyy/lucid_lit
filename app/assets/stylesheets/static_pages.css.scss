@@ -9,3 +9,20 @@
   height: 3em;
   margin-top: -3em;
 }
+.bg {
+  background: url('banner.jpg') no-repeat center center;
+  position: fixed;
+  width: 100%;
+  height: 100%; /*same height as jumbotron */
+  top:0;
+  left:0;
+  z-index: -1;
+  opacity: .4;
+}
+.jumbotron {
+  background:transparent;
+  text-align: center;
+}
+.jumbotron h1 {
+  margin: 200px 200px 150px 200px;
+}

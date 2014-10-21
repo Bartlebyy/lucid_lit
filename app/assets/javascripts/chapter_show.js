@@ -10,20 +10,25 @@ $(document).ready(function(){
       $('.popover').popover('destroy');
       highlighter.removeHighlights();
 
-      selection = window.getSelection() ;
-      console.log(selection);
+      // selection = window.getSelection() ;
+      //console.log(selection);
       return true;
       //TODO interact with popover. do not "Highlight" a popover
     },
     onAfterHighlight: function(highlights, range) {
       $(highlights).popover({ content: 'Annotate?', placement: 'top' }).popover('show');
       $(".popover").click(function(){
-        var jsonStr = highlighter.serializeHighlights();
-        console.log(jsonStr);
-        console.log(highlights);
+        // var jsonStr = highlighter.serializeHighlights();
+        // console.log(jsonStr);
+        // console.log(highlights);
+
         $('.popover').popover('destroy');
-        // $(".highlighted").popover({ content: range, placement: 'top' }).popover('show');
+
         $(".modal").modal('show');
+        $("#original_word").text('"'+range+'"');
+        $("#annotation_original_word").val(range);
+        $("#annotation_length").val(range.length);
+        $("#annotation_offset").val(highlights[0].previousSibling.length);
         highlighter.removeHighlights();
       });
 
@@ -40,6 +45,11 @@ $(document).ready(function(){
       $('.popover').popover('destroy');
       highlighter.removeHighlights();
     }
+  });
+
+  $("form").submit(function() {
+    $(".modal").modal('hide');
+    location.reload();
   });
   // $('p').on('mouseup', function(e){
   //   var selection;

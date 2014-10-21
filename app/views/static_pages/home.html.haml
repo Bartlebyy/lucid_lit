@@ -1,2 +1,14 @@
-%h1 Welcome to Lucid Lit!
-=link_to "Our Books", books_path
+-# %h1 Welcome to Lucid Lit!
+-# =link_to "Our Books", books_path
+.bg
+.jumbotron
+  %h1
+    %span{title: "lu·cid, adj. expressed clearly; easy to understand", "data-toggle" => "popover", "data-placement" => "left", "data-trigger" => "hover"}
+      Lucid
+    %span{title: "lit, n. abbr of literature. written works, especially those considered of superior or lasting artistic merit.", "data-toggle" => "popover", "data-trigger" => "hover"}
+      Lit
+  %h2
+  =link_to "Start Reading", books_path, class: "btn btn-lg btn-primary"
+
+:javascript
+  $('[data-toggle=popover]').popover();

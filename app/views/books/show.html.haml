@@ -1,7 +1,12 @@
-%h1=@book.title
-
+.pull-right
+  %button.btn.btn-primary Download MOBI
+  %button.btn.btn-primary Download EPUB
+%h1= @book.title
+%h4= "by #{@book.author}"
+-# =link_to "Download MOBI", {:style=>'color:#000000;'}
+-# =link_to "Download EPUB", {:style=>'color:#000000;'}
 %h3 Chapters
 -@chapters.order("chapter_order asc").each do |chapter|
   %ul
     %li
-      =link_to chapter.name, chapter_path(chapter)
+      =link_to chapter.name, chapter_path(chapter), {:style=>'color:#000000;'}

@@ -5,7 +5,9 @@ class ChaptersController < ApplicationController
   def show
     @chapter = Chapter.find(params[:id])
     @next_chapter = Chapter.find_by(chapter_order: @chapter.chapter_order+1)
+    @previous_chapter = Chapter.find_by(chapter_order: @chapter.chapter_order-1)
     @annotations = @chapter.annotations
+
     respond_to do |format|
       format.html
       format.json { render json: @annotations }

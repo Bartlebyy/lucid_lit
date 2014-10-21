@@ -4,20 +4,22 @@ namespace :download do
   task refresh: :environment do
     Book.all.each do |book|
       folder = "#{Rails.root}/#{book.title.gsub(/ /, '_')}"
+
       if File.directory?(folder)
         files = Dir.glob("#{folder}/text/*.md")
         FileUtils.rm_rf(files)
-        @chapters = book.chapters.order(:chapter_order)
-        @chapters.each_with_index do |chapter, index|
+        chapters = book.chapters.order(:chapter_order)
+        footnote_number = 1
+        chapters.each_with_index do |chapter, index|
           index = index.to_s.rjust(3,"0")
           out_file = File.new("#{folder}/text/#{index}.md", "w")
-          out_file.puts("#{chapter.name}")
+          out_file.puts(chapter.name)
           out_file.puts("-----------------")
           chapter_body = "#{chapter.body}\n"
           annotations = chapter.annotations.order(:offset)
-          footnote_number = 1
           annotations.each do |annotation|
-            footnote_call = "[^#{footnote_number}]"
+            puts footnote_number
+            footnote_call = "[^#{footnote_number}][^#{footnote_number}]"
             offset = annotation.offset + annotation.length
             p1 = chapter_body[0, offset -13]
             # int numLines = aDiff.text.Split('\n').Length

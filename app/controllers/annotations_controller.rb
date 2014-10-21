@@ -4,6 +4,7 @@ class AnnotationsController < ApplicationController
     @annotation = @chapter.annotations.new(annotation_params)
     if @annotation.save
       flash[:success] = "Annotation successfully created!"
+      # render :js => 'window.location.reload()'
     else
       render('new')
       flash[:danger] = "Please fill in all fields."
