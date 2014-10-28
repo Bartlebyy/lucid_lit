@@ -3,4 +3,6 @@
 This is a project made to encourage users to read classical literature.
 This was my submission for my final class project for The Iron Yard.
 It's a website where users can annotate classical literature online, and
-download the .mobi or .epub version to take on the go. 
+download the .mobi or .epub version to take on the go.
+
+My next steps for this project is to refactor the code.
