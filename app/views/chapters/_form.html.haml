@@ -2,10 +2,10 @@
   .form_group
     =f.label :name, "Name"
     =f.text_field :name, class: "form-control"
-    %br
+  .form_group
     =f.label :body, "Body"
     =f.text_area :body, class: "form-control"
-    %br
+  .form_group
     =f.label :chapter_order, "Order"
     =f.text_field :chapter_order, class: "form-control", placeholder: "default"
     =f.submit :class => "btn btn-primary"

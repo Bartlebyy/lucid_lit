@@ -13,6 +13,14 @@
       =link_to "Previous Chapter", chapter_path(@previous_chapter), {:style=>'color:#000000;'}
   %input#chapter_id{:type => "hidden", :value => @chapter.id}/
 
+%button.btn.btn-default{"data-placement" => "left", "data-toggle" => "tooltip", :title => "Tooltip on left", :type => "button"}
+  %i.fa.fa-pencil
+
+.tooltip{:role => "tooltip"}
+  .tooltip-arrow
+    .tooltip-inner
+      %i.fa.fa-pencil
+
 .modal.fade.bs-example-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-sm
     .modal-content
